@@ -1,0 +1,6 @@
+const home = shell.disk[shell.username];
+if (!home?.children) {
+  shell.print("(empty)");
+  return;
+}
+shell.print(Object.keys(home.children).join("  "));

@@ -1,0 +1,8 @@
+kaizex=decodebase64
+txt=default
+skaizex=decodebase64
+referencepng=url
+js=default
+pjs=decodebase64
+default=default
+open:default=textedit

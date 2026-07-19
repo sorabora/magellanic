@@ -1,0 +1,23 @@
+const path = args[0];
+if (!path) {
+  shell.print("open: usage: open <path>");
+  return false;
+}
+
+if (!shell.fs.canAccess(path, "read", ctx)) {
+  shell.print(`open: ${path}: permission denied`);
+  return false;
+}
+
+const resolved = shell.fs.resolvePath(path);
+if (!resolved || resolved.item.children) {
+  shell.print(`open: ${path}: not found`);
+  return false;
+}
+
+shell.openFile(resolved.name, resolved.item, {
+  elevated: ctx.elevated,
+  admin: ctx.admin || resolved.item.admin,
+  path,
+});
+return true;

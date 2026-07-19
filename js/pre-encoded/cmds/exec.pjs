@@ -1,0 +1,24 @@
+const payload = args[0];
+if (!payload) {
+  shell.print("exec: usage: exec <base64>");
+  return false;
+}
+try {
+  const code = atob(payload);
+  if (ctx.elevated) {
+    new Function(code)();
+  } else {
+    shell.runSandboxed(code, {
+      print: shell.print,
+      username: shell.username,
+      renderDesktopApps: shell.renderDesktopApps,
+      openFile: shell.openFile,
+      fs: shell.fs,
+      disk: shell.disk,
+    });
+  }
+  return true;
+} catch (err) {
+  shell.print(String(err));
+  return false;
+}

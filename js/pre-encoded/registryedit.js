@@ -1,0 +1,2 @@
+authorizeRegistryEditor();
+openRegistryEditor();

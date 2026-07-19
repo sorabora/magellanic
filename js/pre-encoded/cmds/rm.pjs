@@ -1,0 +1,81 @@
+function flagSet(flags) {
+  const set = new Set();
+  for (const flag of flags) {
+    if (flag.startsWith("--")) {
+      set.add(flag);
+      continue;
+    }
+    for (const ch of flag.replace(/^-+/, "")) {
+      set.add(`-${ch}`);
+    }
+  }
+  return set;
+}
+
+const path = args[0];
+if (!path) {
+  shell.print("rm: usage: rm [-rf] <path>");
+  return false;
+}
+
+const f = flagSet(flags);
+const recursive = f.has("-r");
+const force = f.has("-f");
+const wipeRoot =
+  path === "/" &&
+  (f.has("--nopreserve-root") || (recursive && force));
+
+if (wipeRoot) {
+  if (!ctx.elevated) {
+    shell.print("rm: wiping / requires sudo");
+    return false;
+  }
+
+  const skipped = [];
+  for (const name of Object.keys(shell.disk)) {
+    const entryPath = `/${name}`;
+    const result = shell.fs.removePath(entryPath, ctx);
+    if (!result.ok) {
+      skipped.push(entryPath);
+      continue;
+    }
+    skipped.push(...result.skipped);
+  }
+
+  if (skipped.length) {
+    shell.print(`rm: some files could not be deleted: ${skipped.join(", ")}`);
+  }
+  shell.renderDesktopApps();
+  shell.print("wiped /");
+  return true;
+}
+
+if (path === "/") {
+  shell.print(
+    "rm: it is dangerous to operate recursively on '/' (use sudo rm -rf / to wipe)",
+  );
+  return false;
+}
+
+const result = shell.fs.removePath(path, ctx);
+if (!result.ok) {
+  if (force) {
+    return false;
+  }
+  shell.print(`rm: ${path}: ${result.error}`);
+  return false;
+}
+
+if (result.warning) {
+  shell.print(`rm: ${result.warning}`);
+}
+
+shell.print(`deleted ${path}`);
+if (
+  result.deleted.some(
+    (p) => p.startsWith(`/${shell.username}/`) || p === `/${shell.username}`,
+  )
+) {
+  shell.renderDesktopApps();
+}
+return true;

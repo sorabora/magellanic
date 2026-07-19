@@ -1,0 +1,70 @@
+const action = args[0];
+
+function parseValue(raw) {
+  if (raw === "true") return true;
+  if (raw === "false") return false;
+  if (raw === "null") return null;
+  if (/^-?\d+(\.\d+)?$/.test(raw)) return Number(raw);
+  if (
+    (raw.startsWith('"') && raw.endsWith('"')) ||
+    (raw.startsWith("'") && raw.endsWith("'"))
+  ) {
+    return raw.slice(1, -1);
+  }
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return raw;
+  }
+}
+
+if (!action) {
+  shell.print("reg: usage: reg get <path> | reg set <path> <value> | reg list");
+  return false;
+}
+
+if (!shell.registry) {
+  shell.print("reg: registry unavailable");
+  return false;
+}
+
+switch (action) {
+  case "get": {
+    const path = args[1];
+    if (!path) {
+      shell.print("reg: usage: reg get <path>");
+      return false;
+    }
+    const value = shell.registry.get(path);
+    if (value === undefined) {
+      shell.print(`reg: ${path}: not set`);
+      return false;
+    }
+    shell.print(typeof value === "string" ? value : JSON.stringify(value));
+    return true;
+  }
+  case "set": {
+    const path = args[1];
+    const rawValue = args.slice(2).join(" ");
+    if (!path || !rawValue) {
+      shell.print("reg: usage: reg set <path> <value>");
+      return false;
+    }
+    if (!ctx.elevated) {
+      shell.print("reg: setting registry requires sudo");
+      return false;
+    }
+    const value = parseValue(rawValue);
+    shell.registry.set(path, value);
+    shell.print(`set ${path} = ${JSON.stringify(value)}`);
+    return true;
+  }
+  case "list": {
+    shell.print(JSON.stringify(shell.registry.getData(), null, 2));
+    return true;
+  }
+  default:
+    shell.print(`reg: unknown action: ${action}`);
+    shell.print("reg: usage: reg get <path> | reg set <path> <value> | reg list");
+    return false;
+}

@@ -1,0 +1,29 @@
+.terminal-output {
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  padding: 1rem;
+  color: white;
+  font-family: monospace;
+}
+
+.terminal-form {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-prefix {
+  color: #08ff08;
+  font-family: monospace;
+  margin-right: 8px;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: monospace;
+}

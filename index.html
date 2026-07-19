@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      data-system-style="true"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>HTML + CSS</title>
+    <link rel="stylesheet" href="core.css" data-system-style="true" />
+    <link rel="stylesheet" href="terminal.css" data-system-style="true" />
+  </head>
+  <body>
+    <div class="center" id="ex" style="display: none">
+      <div id="exPrompt" class="card">
+        <h1 id="exPromptHeader">
+          Welcome to <span class="important">magellanic!</span>
+        </h1>
+        <div id="exPromptContent">
+          <p>Create an account to begin.</p>
+        </div>
+        <div>
+          <div class="flex-row mt" id="exPromptActions">
+            <button id="skinBtn" class="f-1">Skip</button>
+            <button class="f-1">Login</button>
+            <button class="f-1">Signup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="desktop">
+      <div id="topbar">
+        <div class="topbar-menu">
+          <button class="topbar-item" data-menu="magellanic">magellanic</button>
+          <div class="dropdown" id="menu-magellanic">
+            <button data-action="about">About magellanic</button>
+            <button data-action="settings">Settings</button>
+            <hr />
+            <button data-action="export">Export</button>
+          </div>
+        </div>
+
+        <div class="topbar-menu">
+          <button class="topbar-item" data-menu="file">File</button>
+          <div class="dropdown" id="menu-file">
+            <button data-action="new-file">New File</button>
+            <button data-action="open-file">Open</button>
+            <button data-action="save-file">Save</button>
+          </div>
+        </div>
+
+        <div class="topbar-menu">
+          <button class="topbar-item" data-menu="edit">Edit</button>
+          <div class="dropdown" id="menu-edit">
+            <button data-action="cut">Cut</button>
+            <button data-action="copy">Copy</button>
+            <button data-action="paste">Paste</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="workspace"></div>
+      <div class="apps-list" id="apps-list"></div>
+      <div class="startMenu hidden" id="startMenuInterface">
+        <div class="battery-row">
+          <small id="batteryPercent">...</small>
+          <div class="battery-bar">
+            <div id="batteryFill"></div>
+          </div>
+        </div>
+        <button class="max-width" id="exportBtn">Export</button>
+      </div>
+      <div class="taskbar">
+        <button id="startMenu">magellanic</button>
+        <span id="appsList"></span>
+      </div>
+    </div>
+    <script>
+      window.vendorSettings = {
+        download: [
+          { name: "2048", url: "https://tofuos-apps.s3.us-east-1.amazonaws.com/2048.zip" }
+        ]
+      }
+    </script> 
+
+    <script src="js/core/hive.js"></script>
+    <script src="js/core/disk.js"></script>
+    <script src="js/core/vendor.js"></script>
+    <script src="js/core/contextmenu.js"></script>
+    <script src="js/core/customtags.js"></script>
+
+    <script src="js/ui/fx.js"></script>
+    <script src="js/core/experience.js"></script>
+    <script src="js/core/desktop.js"></script>
+    <!--<script type="module" src="js/core/server.js"></script>-->
+  </body>
+</html>

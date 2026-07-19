@@ -1,0 +1,87 @@
+{
+  "groups": [
+    {
+      "category": "Appearance",
+      "settings": [
+        { "key": "system.theme", "type": "select", "default": "dark", "risk": "safe",
+          "options": ["dark", "light", "midnight", "hacker", "auto"],
+          "description": "Desktop color theme" },
+        { "key": "system.accentColor", "type": "text", "default": "#2db9ff", "risk": "safe",
+          "description": "Accent color for buttons and highlights (hex)" },
+        { "key": "system.fontScale", "type": "number", "default": 100, "min": 60, "max": 180, "risk": "safe",
+          "description": "UI font scale, percent" },
+        { "key": "system.wallpaperUrl", "type": "text", "default": "", "risk": "safe",
+          "description": "Custom desktop wallpaper URL (blank = default)" },
+        { "key": "system.wallpaperDim", "type": "number", "default": 0, "min": 0, "max": 90, "risk": "safe",
+          "description": "Darken the wallpaper by this percent" }
+      ]
+    },
+    {
+      "category": "Effects",
+      "settings": [
+        { "key": "system.animations", "type": "boolean", "default": true, "risk": "safe",
+          "description": "Enable window and menu animations" },
+        { "key": "system.reduceMotion", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Disable all motion and transitions" },
+        { "key": "system.transparency", "type": "boolean", "default": true, "risk": "safe",
+          "description": "Use frosted, translucent window surfaces" },
+        { "key": "system.wallpaperBlur", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Keep the wallpaper blurred at all times" },
+        { "key": "system.disableWallpaperZoom", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Stop the wallpaper zoom-on-hover effect" },
+        { "key": "system.grayscale", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Render the whole desktop in grayscale" },
+        { "key": "system.invertColors", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Invert all screen colors" },
+        { "key": "system.crtEffect", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Apply retro CRT scanlines" },
+        { "key": "system.highContrast", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Boost contrast for readability" },
+        { "key": "system.compactMode", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Tighten spacing and rounded corners" }
+      ]
+    },
+    {
+      "category": "Desktop",
+      "settings": [
+        { "key": "system.hideDesktopIcons", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Hide all icons on the desktop" }
+      ]
+    },
+    {
+      "category": "Windows",
+      "settings": [
+        { "key": "system.forceAllOptions", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Always show close, minimize, and resize on every window" },
+        { "key": "system.maxWindowsPerApp", "type": "number", "default": 3, "min": 1, "max": 12, "risk": "safe",
+          "description": "How many windows a single app may open" },
+        { "key": "system.confirmOnClose", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Ask for confirmation before closing a window" },
+        { "key": "system.snapToGrid", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Snap dragged windows to a grid" },
+        { "key": "system.snapGridSize", "type": "number", "default": 20, "min": 4, "max": 100, "risk": "safe",
+          "description": "Grid size in pixels for window snapping" },
+        { "key": "system.disableWindowDrag", "type": "boolean", "default": false, "risk": "dangerous",
+          "description": "Lock every window in place (cannot be moved)" }
+      ]
+    },
+    {
+      "category": "Security & Danger Zone",
+      "settings": [
+        { "key": "system.bypassProtections", "type": "boolean", "default": false, "risk": "dangerous",
+          "description": "Disable special-file delete protection" },
+        { "key": "system.readOnlyFilesystem", "type": "boolean", "default": false, "risk": "dangerous",
+          "description": "Block all deletes and writes to the disk" }
+      ]
+    },
+    {
+      "category": "Developer",
+      "settings": [
+        { "key": "system.debugMode", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Outline windows and show a debug badge" },
+        { "key": "system.verboseLogging", "type": "boolean", "default": false, "risk": "safe",
+          "description": "Log every registry change to the console" }
+      ]
+    }
+  ]
+}
