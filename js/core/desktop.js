@@ -16,7 +16,7 @@ async function sha256(input) {
 }
 
 function isOfficialHash() {
-  const officialHashes = ["23cf66"]
+  const officialHashes = ["630f2f"]
   if (officialHashes.includes(hash)) {
     return "This installation matches an official magellanic build."
   } else {
