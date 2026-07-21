@@ -1,7 +1,7 @@
 const handlers = {};
 let recent = [];
 let taskbar = [];
-let osVersion = "1.0.0";
+let osVersion = "1.0.1";
 let hash;
 
 createSystemHash();
